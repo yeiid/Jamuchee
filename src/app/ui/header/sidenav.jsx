@@ -7,7 +7,7 @@ export default function SideNav() {
 
 
   return (
-    <div className="fixe bg-gray-50 flex h-full flex-row items-center px-3 py-4 md:px-2">
+    <div className=" bg-gray-50 flex h-full flex-row items-center px-3 py-4 md:px-2">
             {/* <div className="hidden md:block">
         <Image
         className="w-40"

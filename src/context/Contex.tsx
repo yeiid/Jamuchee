@@ -5,6 +5,8 @@ import React, { createContext, useReducer, useContext } from "react";
 interface Product {
   id: string;
   quantity: number;
+  price :number
+  name:string
   // Add other properties if needed
 }
 

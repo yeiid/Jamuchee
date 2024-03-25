@@ -33,11 +33,11 @@ const ProductCard: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-wrap m-4">
+    <div className="flex flex-wrap m-4 ">
       { products.map((product) => (
         <div
           key={product.id}
-          className="max-w-sm rounded overflow-hidden shadow-lg"
+          className="max-w-sm rounded overflow-hidden shadow-lg m-4"
         >
           <Image
             src={product.image}
