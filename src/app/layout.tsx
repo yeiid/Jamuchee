@@ -22,7 +22,7 @@ export default function RootLayout({
       <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <CartProvider>
+    <CartProvider>
     <Sidevar />
     {children}
   </CartProvider>

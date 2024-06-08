@@ -1,4 +1,4 @@
-import React from "react";
+"use client"
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,7 +8,7 @@ const HomePage = () => {
     <div className="container mx-auto">
       {/* Banner */}
       <div className="grid justify-center ">
-        <Image src="/banner.jpg" alt="Banner" width={1000} height={500} />
+        <Image src="/banner.jpg" alt="Banner" width={1000} height={500} priority />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
             Bienvenido a Tu E-commerce de Cactus
@@ -27,7 +27,7 @@ const HomePage = () => {
               height={200}
             />
             <h2 className="text-xl font-semibold text-center mt-2">
-              Cactus de Interior
+            SpeciesCard
             </h2>
           </Link>
         </div>
@@ -46,19 +46,18 @@ const HomePage = () => {
         </div>
         {/* Otras categorías */}
       </div>
-
       {/* Información */}
-      <div className="info mt-8">
-        <h2 className="text-2xl font-bold mb-4">Nuestra Empresa</h2>
-        <p className="text-lg">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget
-          fermentum lorem, nec ultrices magna.
-        </p>
-        <p className="text-lg">
-          Integer convallis, nunc quis gravida finibus, urna odio luctus nisi,
-          non mollis mi nisi vitae ante.
-        </p>
-      </div>
+      {/* <div className="info mt-8">
+              <h2 className="text-2xl font-bold mb-4">Nuestra Empresa</h2>
+              <p className="text-lg">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget
+                fermentum lorem, nec ultrices magna.
+              </p>
+              <p className="text-lg">
+                Integer convallis, nunc quis gravida finibus, urna odio luctus nisi,
+                non mollis mi nisi vitae ante.
+              </p>
+        </div> */}
 
       {/* Testimonios */}
       <div className="testimonials mt-8">
@@ -147,15 +146,15 @@ const HomePage = () => {
       <div className="max-w-3xl mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-8">Síguenos en Redes Sociales</h2>
         <div className="flex justify-center gap-4">
-          <a href="https://www.facebook.com/jamuche" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
-            <a className="text-4xl" />
-          </a>
-          <a href="https://www.instagram.com/jamuche/" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:text-pink-800">
-            <a className="text-4xl" />
-          </a>
-          <a href="https://twitter.com/jamuche" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-600">
+          <Link href="https://www.facebook.com/jamuche" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
+            <p className="text-4xl" />
+          </Link>
+          <Link href="https://www.instagram.com/jamuche/" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:text-pink-800">
+            <p className="text-4xl" />
+          </Link>
+          <Link href="https://twitter.com/jamuche" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-600">
             <h1 className="text-4xl" />
-          </a>
+          </Link>
         </div>
         <p className="text-lg mt-4 text-center">En Jamuche, nos esforzamos por brindarte contenido inspirador sobre cactus y suculentas. Síguenos en nuestras redes sociales para obtener las últimas noticias, consejos de cuidado y ofertas especiales.</p>
       </div>

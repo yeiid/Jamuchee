@@ -1,9 +1,9 @@
-import React from 'react'
 
+import SpeciesCard from '@/components/SpeciesCard'
 const paga = () => {
   return (
     <div>
-      specie
+      <SpeciesCard/>
     </div>
   )
 }

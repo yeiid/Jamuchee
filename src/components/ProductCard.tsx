@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import { useCart } from "@/context/Contex";
 import products from '@/mook/datos.json'
@@ -12,8 +11,6 @@ import products from '@/mook/datos.json'
 //   price: number;
 //   image: string;
 // }
-
-
 
 const ProductCard: React.FC = () => {
   const { dispatch } = useCart();
@@ -33,7 +30,7 @@ const ProductCard: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-wrap m-4 ">
+    <div className="flex flex-wrap justify-center m-4 ">
       { products.map((product) => (
         <div
           key={product.id}

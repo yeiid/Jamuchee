@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 const links = [
-  { name: "INICIO", href: "/ui/", icon:"" },
+  { name: "INICIO", href: "/", icon:"" },
   {name: "PRODUCTOS",href: "/ui/products/",icon:""},
   { name: "NOSOTROS", href: "/ui/about",icon:"" },
   { name: "ESPECIES", href: "/ui/specie",icon:"" },
@@ -23,7 +23,7 @@ export default function NavLinks() {
           <Link
             key={link.name}
             href={link.href}
-            className=" flex  grow items-center justify-center rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3"
+            className=" grid items-center justify-center rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3"
             //   {
             //     'bg-sky-100 text-blue-600': pathname === link.href,
             //   },
