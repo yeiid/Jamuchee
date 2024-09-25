@@ -1,0 +1,28 @@
+jamuche/
+│
+├── pages/
+│   ├── index.tsx (Home)
+│   ├── about.tsx
+│   ├── species/
+│   │   ├── index.tsx (Catálogo)
+│   │   └── [id].tsx (Detalles del producto)
+│   ├── contact.tsx
+│   └── cart.tsx
+│
+├── components/
+│   ├── Layout.tsx
+│   ├── Header.tsx
+│   ├── Footer.tsx
+│   ├── ProductCard.tsx
+│   ├── Testimonial.tsx
+│   └── ContactForm.tsx
+│
+├── styles/
+│   └── globals.css
+│
+├── types/
+│   ├── product.ts
+│   └── testimonial.ts
+│
+└── public/
+    └── images/

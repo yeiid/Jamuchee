@@ -2,15 +2,7 @@
 
 import Image from "next/image";
 import { useCart } from "@/context/Contex";
-import products from '@/mook/datos.json'
-
-// interface ProductData {
-//   id: string;
-//   name: string;
-//   description: string;
-//   price: number;
-//   image: string;
-// }
+import products from "@/mook/datos.json";
 
 const ProductCard: React.FC = () => {
   const { dispatch } = useCart();
@@ -30,29 +22,38 @@ const ProductCard: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-wrap justify-center m-4 ">
-      { products.map((product) => (
-        <div
-          key={product.id}
-          className="max-w-sm rounded overflow-hidden shadow-lg m-4"
-        >
+    <>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+    {products.map((product) => (
+      <div
+        key={product.id}
+        className="bg-white rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105"
+      >
+        <div className="relative h-48">
           <Image
             src={product.image}
             alt={product.name}
-            width={200}
-            height={200}
+            layout="fill"
+            objectFit="cover"
           />
-          <div className="px-6 py-4">
-            <div className="font-bold text-xl mb-2">{product.name}</div>
-            <p className="text-gray-700 text-base">{product.description}</p>
-            <p className="mt-2">${product.price}</p>
-          </div>
-          <button className="mt-4 bg-gray-700 text-white px-4 py-2 rounded"  onClick={() => handleAddToCart(product.id)}>
-            Add to cart
-          </button>
         </div>
-      ))}
-    </div>
+        <div className="p-4">
+          <h2 className="font-bold text-xl mb-2 text-gray-800">{product.name}</h2>
+          <p className="text-gray-600 text-sm mb-4">{product.description}</p>
+          <div className="flex justify-between items-center">
+            <span className="text-lg font-semibold text-blue-600">${product.price.toFixed(2)}</span>
+            <button
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 transform hover:scale-105"
+              onClick={() => handleAddToCart(product.id)}
+            >
+              Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div></>
+
   );
 };
 

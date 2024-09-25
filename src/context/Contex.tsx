@@ -1,23 +1,8 @@
 "use client";
 
-import React, { createContext, useReducer, useContext } from "react";
+import { createContext, useReducer, useContext } from "react";
+import {Product,CartState,Action} from "@/app/lib/types"
 
-interface Product {
-  id: string;
-  quantity: number;
-  price :number
-  name:string
-  // Add other properties if needed
-}
-
-interface CartState {
-  cart: Product[];
-}
-
-interface Action {
-  type: string;
-  payload: any;
-}
 
 const CartContext = createContext<{ cart: Product[]; dispatch: React.Dispatch<Action> } | undefined>(undefined);
 
