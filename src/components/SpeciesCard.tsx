@@ -4,18 +4,8 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import cart from '@/mook/datos.json';
-interface Plant {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  forSale?: boolean; // Esta propiedad es opcional
-}
-interface SpeciesSectionProps {
-  title: string;
-  species: Plant[];
-}
+import {SpeciesSectionProps} from '@/app/lib/types'
+
 const SpeciesSection: React.FC<SpeciesSectionProps> = ({ title, species }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   return (

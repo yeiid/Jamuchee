@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { useCart } from "@/context/Contex";
-import { ShoppingCart, Plus, Minus, Trash2 } from 'lucide-react';
+import { ShoppingCart, Plus, Minus, Trash2, Link } from 'lucide-react';
 
 const CartComponent: React.FC = () => {
   const [isCartOpen, setCartOpen] = useState(false);
@@ -125,10 +125,10 @@ const CartComponent: React.FC = () => {
                     <p className="text-xl font-bold">Total: ${getTotalPrice()}</p>
                     <button
                       className="mt-4 w-full bg-green-600 text-white font-bold py-2 px-4 rounded hover:bg-green-700 transition duration-300"
-                      onClick={handleBuy}
-                    >
-                      Comprar por WhatsApp
+                      >
+                    
                     </button>
+                    <Link href='/src/app/ui/products/productDetail/page.tsx'/>
                   </div>
                 </>
               )}

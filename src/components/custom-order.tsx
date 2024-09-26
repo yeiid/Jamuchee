@@ -1,37 +1,14 @@
 "use client"
+import {Plant,Pot,OrderItem,CartItem} from '@/app/lib/types'
+
+
 import React, { useState, useEffect } from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { useCart } from "@/context/Contex";
 
-// Tipos
-type Plant = {
-  id: string;
-  name: string;
-  price: number;
-};
 
-type Pot = {
-  id: string;
-  color: string;
-  price: number;
-};
 
-type OrderItem = {
-  id: string;
-  plant: Plant;
-  pot: Pot;
-  quantity: number;
-};
-
-type CartItem = {
-  id: string;
-  name: string;
-  price: number;
-  quantity: number;
-};
-
-// Componente principal
 const CustomOrderPage: NextPage = () => {
   const [order, setOrder] = useState<OrderItem[]>([]);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -39,17 +16,12 @@ const CustomOrderPage: NextPage = () => {
   const [selectedPot, setSelectedPot] = useState<Pot | null>(null);
   const [quantity, setQuantity] = useState(1);
   const { cart, dispatch } = useCart();
-  // Simulación de obtención de datos del carrito
-  useEffect(() => {
-    // En un caso real, esto vendría de tu estado global o API
-    const mockCartItems: CartItem[] = [
-      { id: 'item1', name: 'Planta A', price: 15, quantity: 2 },
-      { id: 'item2', name: 'Planta B', price: 20, quantity: 1 },
-    ];
-    setCartItems(mockCartItems);
-  }, []);
 
-  // Datos de ejemplo (en un caso real, estos datos vendrían de una API o base de datos)
+  useEffect(() => {
+    // No necesitamos setCartItems ya que usamos cart directamente
+    console.log('Carrito actualizado:', cart);
+  }, [cart]);
+
   const plants: Plant[] = [
     { id: 'p1', name: 'Cactus', price: 10 },
     { id: 'p2', name: 'Suculenta', price: 15 },
@@ -120,7 +92,7 @@ const CustomOrderPage: NextPage = () => {
           <section className="bg-white p-6 rounded-lg shadow">
             <h2 className="text-2xl font-semibold text-green-700 mb-4">Tu carrito</h2>
             <ul className="space-y-4">
-              {cartItems.map((item) => (
+              {cart.map((item) => (
                 <li key={item.id} className="flex justify-between items-center border-b pb-2">
                   <div>
                     <p className="font-medium">{item.name}</p>
@@ -189,7 +161,7 @@ const CustomOrderPage: NextPage = () => {
 
             <h3 className="text-xl font-semibold text-green-600 mb-2">Artículos del carrito</h3>
             <ul className="space-y-2 mb-4">
-              {cartItems.map((item) => (
+              {cart.map((item) => (
                 <li key={item.id} className="flex justify-between items-center">
                   <span>{item.name} x{item.quantity}</span>
                   <span>${item.price * item.quantity}</span>
