@@ -80,13 +80,6 @@ export default function Header() {
         )}
       </div>
 
-      {/* Cart Component (placeholder) */}
-      {isCartOpen && (
-        <div className="fixed top-0 right-0 h-full w-64 bg-white shadow-lg p-4 z-50">
-          <h2 className="text-xl font-bold mb-4">Shopping Cart</h2>
-          
-        </div>
-      )}
     </header>
   );
 }

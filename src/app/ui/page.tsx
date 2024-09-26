@@ -10,7 +10,7 @@ const HomePage = () => {
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center">
         <Image
-          src="/hero-image.jpg"
+          src="/banner.jpg"
           alt="Jamuche Cactus y Suculentas"
           layout="fill"
           objectFit="cover"
