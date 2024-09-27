@@ -1,6 +1,6 @@
 jamuche/
 │
-├── pages/
+├── src/
 │   ├── index.tsx (Home)
 │   ├── about.tsx
 │   ├── species/
