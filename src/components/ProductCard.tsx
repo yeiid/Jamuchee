@@ -15,7 +15,7 @@ const products = [
   },
   {
     "id": "2",
-    "name": "Producto 2",
+    "name": "ey sigueme ",
     "description": "Descripción del producto 2",
     "price": 20,
     "image": "/2.jpg",

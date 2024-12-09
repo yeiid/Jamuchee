@@ -3,7 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidevar from "@/components/sidenav";
 import { CartProvider } from "@/context/Contex";
+import ScrollToTopButton from "@/components/Scroll";
 import Head from "next/head";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -23,8 +25,13 @@ export default function RootLayout({
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <CartProvider>
-          <Sidevar />
-          {children}
+          <header>
+            <Sidevar/>
+          </header>
+          <main className="min-h-screen bg-green-50">
+            {children}
+          </main>
+          <ScrollToTopButton />
         </CartProvider>
       </body>
     </html>

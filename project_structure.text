@@ -1,0 +1,82 @@
+- .eslintrc.json
+- .gitignore
+- next-env.d.ts
+- next.config.js
+- package-lock.json
+- package.json
+- postcss.config.js
+- project_structure.text
+- public
+  - 1.JPG
+  - 2.JPG
+  - 3.JPG
+  - 4.JPG
+  - 5.JPG
+  - banner.jpg
+  - cactus1.jpg
+  - favicon.ico
+  - Imagen de WhatsApp 2024-09-25 a las 20.48.23_c4059c56.jpg
+  - logo.jpeg
+  - matera.jpg
+  - materas.jpeg
+  - oliitaM.jpg
+  - ollitaM2.JPG
+  - perfil.jpg
+  - suculenta.jpeg
+- README.md
+- src
+  - app
+    - admin
+      - AdminHeader.tsx
+      - AdminLayout.tsx
+      - AdminSidebar.tsx
+      - analytics
+        - page.tsx
+      - DashboardStats.tsx
+      - page.tsx
+      - sales
+        - page.tsx
+      - settings
+        - page.tsx
+      - species
+        - page.tsx
+      - species.ts
+      - users
+        - page.tsx
+    - api
+    - globals.css
+    - layout.tsx
+    - lib
+      - action.ts
+      - types.ts
+    - page.tsx
+    - ui
+      - about
+        - page.tsx
+      - contact
+        - page.tsx
+      - products
+        - page.tsx
+        - productDetail
+          - page.tsx
+      - specie
+        - page.tsx
+  - components
+    - Card.tsx
+    - CategorySection.tsx
+    - custom-order.tsx
+    - FeatureSection.tsx
+    - HeroSection.tsx
+    - ProductCard.tsx
+    - Scroll.tsx
+    - sidenav.jsx
+    - SpeciesCard.tsx
+    - TestimonialSection.tsx
+  - context
+    - Contex.tsx
+  - store
+    - useCartStore.ts
+    - useProductsStore.ts
+    - useProductStore.ts
+- tailwind.config.ts
+- tsconfig.json

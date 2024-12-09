@@ -1,11 +1,18 @@
 
+import HeroSection from '@/components/HeroSection';
+import CategorySection from '@/components/CategorySection';
+import FeatureSection from '@/components/FeatureSection';
+import TestimonialSection from '@/components/TestimonialSection';
 
-import Customorder from "../components/custom-order"
-export default function page() {
+const HomePage = () => {
   return (
-  <>
-{/* <HomePage/> */}
-{/* <Customorder/> */}
-  </>
-  )
-}
+    <>
+      <HeroSection />
+      <CategorySection />
+      <FeatureSection />
+      <TestimonialSection />
+    </>
+  );
+};
+
+export default HomePage;

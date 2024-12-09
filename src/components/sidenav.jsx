@@ -1,12 +1,12 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import Image from 'next/image';
-import { Menu, X, } from 'lucide-react';
+import Image from "next/image";
+import { Menu, X } from "lucide-react";
 import Card from "./Card";
 
 const links = [
-  { name: "INICIO", href: "/ui/", icon: "" },
+  { name: "INICIO", href: "/", icon: "" },
   { name: "PRODUCTOS", href: "/ui/products/", icon: "v" },
   { name: "NOSOTROS", href: "/ui/about", icon: "v" },
   { name: "ESPECIES", href: "/ui/specie", icon: "v" },
@@ -15,21 +15,16 @@ const links = [
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isCartOpen, setCartOpen] = useState(false);
-
   const handleToggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleToggleCart = () => {
-    setCartOpen(!isCartOpen);
-  };
 
   return (
-    <header className="bg-gray-50 shadow-md">
+    <header className="bg-gray-50 shadow-md ">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4">
-          <Link href="/ui/" className="flex items-center">
+          <Link href="/" className="flex items-center">
             <Image
               src="/favicon.ico"
               alt="Logo"
@@ -53,8 +48,7 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center">
-
-            <Card/>
+            <Card />
             <button
               onClick={handleToggleMenu}
               className="p-2 ml-4 text-gray-600 hover:text-blue-600 transition duration-300 md:hidden"
@@ -79,7 +73,6 @@ export default function Header() {
           </nav>
         )}
       </div>
-
     </header>
   );
 }

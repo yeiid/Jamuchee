@@ -1,6 +1,4 @@
 "use client"
-
-
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import Head from 'next/head';
 import { NextPage } from 'next';

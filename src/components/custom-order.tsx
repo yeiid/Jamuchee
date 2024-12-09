@@ -14,7 +14,6 @@ const CustomOrderPage: NextPage = () => {
   const { cart } = useCart();
 
   useEffect(() => {
-    // No necesitamos setCartItems ya que usamos cart directamente
     console.log("Carrito actualizado:", cart);
   }, [cart]);
 
@@ -106,29 +105,39 @@ const CustomOrderPage: NextPage = () => {
           Finalizar Pedido
         </h1>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          <section className="bg-white p-6 rounded-lg shadow">
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* Sección del carrito */}
+          <section className="bg-white p-6 rounded-lg shadow-lg">
             <h2 className="text-2xl font-semibold text-green-700 mb-4">
               Tu carrito
             </h2>
-            <ul className="space-y-4">
-              {cart.map((item) => (
-                <li
-                  key={item.id}
-                  className="flex justify-between items-center border-b pb-2"
-                >
-                  <div>
-                    <p className="font-medium">{item.name}</p>
-                    <p className="text-sm text-gray-500">
-                      Cantidad: {item.quantity}
-                    </p>
-                  </div>
-                  <span>${item.price * item.quantity}</span>
-                </li>
-              ))}
-            </ul>
+            {cart.length === 0 ? (
+              <p className="text-gray-500">Tu carrito está vacío</p>
+            ) : (
+              <ul className="space-y-4">
+                {cart.map((item) => (
+                  <li
+                    key={item.id}
+                    className="flex justify-between items-center border-b pb-2"
+                  >
+                    <div>
+                      <p className="font-medium text-green-600">{item.name}</p>
+                      <p className="text-sm text-gray-500">
+                        Cantidad: {item.quantity}
+                      </p>
+                    </div>
+                    <span className="text-green-700 font-semibold">
+                      ${item.price * item.quantity}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
 
-            <h2 className="text-2xl font-semibold text-green-700 mt-8 mb-4">
+          {/* Sección de personalización */}
+          <section className="bg-white p-6 rounded-lg shadow-lg">
+            <h2 className="text-2xl font-semibold text-green-700 mb-4">
               Personaliza tu pedido
             </h2>
             <div className="mb-4">
@@ -193,38 +202,17 @@ const CustomOrderPage: NextPage = () => {
             <button
               onClick={addToOrder}
               disabled={!selectedPlant || !selectedPot}
-              className="w-full bg-green-600 text-white font-bold py-2 px-4 rounded hover:bg-green-700 disabled:opacity-50"
+              className="w-full bg-green-600 text-white font-bold py-2 px-4 rounded hover:bg-green-700 disabled:opacity-50 transition-all"
             >
               Agregar al pedido
             </button>
-          </section>
 
-          <section className="bg-white p-6 rounded-lg shadow">
-            <h2 className="text-2xl font-semibold text-green-700 mb-4">
+            {/* Resumen de artículos personalizados */}
+            <h3 className="text-xl font-semibold text-green-600 mt-8 mb-2">
               Resumen del pedido
-            </h2>
-
-            <h3 className="text-xl font-semibold text-green-600 mb-2">
-              Artículos del carrito
-            </h3>
-            <ul className="space-y-2 mb-4">
-              {cart.map((item) => (
-                <li key={item.id} className="flex justify-between items-center">
-                  <span>
-                    {item.name} x{item.quantity}
-                  </span>
-                  <span>${item.price * item.quantity}</span>
-                </li>
-              ))}
-            </ul>
-
-            <h3 className="text-xl font-semibold text-green-600 mb-2">
-              Artículos personalizados
             </h3>
             {order.length === 0 ? (
-              <p className="text-gray-500">
-                No has agregado artículos personalizados
-              </p>
+              <p className="text-gray-500">No has agregado artículos</p>
             ) : (
               <ul className="space-y-4">
                 {order.map((item) => (
@@ -233,7 +221,7 @@ const CustomOrderPage: NextPage = () => {
                     className="flex justify-between items-center border-b pb-2"
                   >
                     <div>
-                      <p className="font-medium">
+                      <p className="font-medium text-green-600">
                         {item.plant.name} en maceta {item.pot.color}
                       </p>
                       <div className="flex items-center mt-1">
@@ -256,34 +244,26 @@ const CustomOrderPage: NextPage = () => {
                         </button>
                       </div>
                     </div>
-                    <div className="flex items-center">
-                      <span className="mr-4">
-                        ${(item.plant.price + item.pot.price) * item.quantity}
-                      </span>
-                      <button
-                        onClick={() => removeFromOrder(item.id)}
-                        className="text-red-500 hover:text-red-700"
-                      >
-                        Eliminar
-                      </button>
-                    </div>
+                    <span className="text-green-700 font-semibold">
+                      ${item.plant.price + item.pot.price}
+                    </span>
                   </li>
                 ))}
               </ul>
             )}
-
-            <div className="mt-6 text-right">
-              <p className="text-xl font-bold">Total: ${calculateTotal()}</p>
-            </div>
-
-            <button
-              onClick={handleCheckout}
-              disabled={cart.length === 0 && order.length === 0}
-              className="w-full mt-4 bg-green-600 text-white font-bold py-2 px-4 rounded hover:bg-green-700 disabled:opacity-50"
-            >
-              Finalizar pedido
-            </button>
           </section>
+        </div>
+
+        <div className="mt-8 bg-green-200 p-6 rounded-lg shadow-md text-center">
+          <h3 className="text-xl font-bold text-green-900 mb-4">
+            Total del pedido: ${calculateTotal()}
+          </h3>
+          <button
+            onClick={handleCheckout}
+            className="bg-green-700 text-white font-bold py-2 px-4 rounded hover:bg-green-800 transition-all"
+          >
+            Finalizar Pedido
+          </button>
         </div>
       </main>
     </div>
