@@ -31,7 +31,7 @@ export const DashboardStats: React.FC<{ stats: DashboardStats }> = ({ stats }) =
             </dd>
           </div>
         ))}
-      </div>
+      </div> 
     );
   };
   

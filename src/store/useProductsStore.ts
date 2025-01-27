@@ -1,42 +1,53 @@
+"use client";
 import { create } from 'zustand';
 
 interface Product {
   id: string;
   name: string;
-  description: string;
   price: number;
-  image: string;
-  forSale: boolean;
+  description: string;
+  // Add other product properties
 }
 
 interface ProductsStore {
   products: Product[];
+  loading: boolean;
+  error: string | null;
+  fetchProducts: () => Promise<void>;
   addProduct: (product: Product) => void;
-  editProduct: (id: string, updatedProduct: Partial<Product>) => void;
-  deleteProduct: (id: string) => void;
+  updateProduct: (product: Product) => void;
+  deleteProduct: (productId: string) => void;
 }
 
-export const useProductsStore = create<ProductsStore>((set) => ({
-  products: [
-    {
-      id: '1',
-      name: 'Cactus Mammillaria',
-      description: 'Cactus pequeño con flores en corona.',
-      price: 10,
-      image: '/1.jpg',
-      forSale: true,
-    },
-  ],
-  addProduct: (product) =>
-    set((state) => ({ products: [...state.products, product] })),
-  editProduct: (id, updatedProduct) =>
-    set((state) => ({
-      products: state.products.map((p) =>
-        p.id === id ? { ...p, ...updatedProduct } : p
-      ),
-    })),
-  deleteProduct: (id) =>
-    set((state) => ({
-      products: state.products.filter((p) => p.id !== id),
-    })),
+const useProductsStore = create<ProductsStore>()((set) => ({
+  products: [],
+  loading: false,
+  error: null,
+  fetchProducts: async () => {
+    set({ loading: true, error: null });
+    try {
+      // Replace with your actual API call
+      const response = await fetch('/api/products');
+      const data = await response.json();
+      set({ products: data, loading: false });
+    } catch (error) {
+      set({ 
+        error: error instanceof Error ? error.message : 'An error occurred', 
+        loading: false 
+      });
+    }
+  },
+  addProduct: (product) => set((state) => ({
+    products: [...state.products, product]
+  })),
+  updateProduct: (updatedProduct) => set((state) => ({
+    products: state.products.map(product => 
+      product.id === updatedProduct.id ? updatedProduct : product
+    )
+  })),
+  deleteProduct: (productId) => set((state) => ({
+    products: state.products.filter(product => product.id !== productId)
+  })),
 }));
+
+export default useProductsStore;

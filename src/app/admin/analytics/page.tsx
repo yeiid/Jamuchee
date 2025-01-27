@@ -2,10 +2,10 @@
 'use client'
 import { AdminLayout } from '../AdminLayout';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import { cart } from '../species';
+import { Cart } from '../../lib/species';
 
 export default function AdminAnalytics() {
-  const data = cart.map(species => ({
+  const data = Cart.map(species => ({
     name: species.name,
     price: species.price,
     status: species.forSale ? 'En venta' : 'No disponible'

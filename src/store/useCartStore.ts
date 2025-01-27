@@ -1,47 +1,54 @@
+"use client";
 import { create } from 'zustand';
-import { Product } from '@/app/lib/types';
+import { persist } from 'zustand/middleware';
 
-interface CartState {
-  cart: Product[];
-  addToCart: (product: Product) => void;
-  removeFromCart: (productId: string) => void;
-  increaseQuantity: (productId: string) => void;
-  decreaseQuantity: (productId: string) => void;
+interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
 }
 
-export const useCartStore = create<CartState>((set) => ({
-  cart: [],
-  
-  addToCart: (product) => set((state) => {
-    const existingProduct = state.cart.find((item) => item.id === product.id);
-    if (existingProduct) {
-      return {
-        cart: state.cart.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        ),
-      };
+interface CartStore {
+  items: CartItem[];
+  addToCart: (item: CartItem) => void;
+  removeFromCart: (itemId: string) => void;
+  clearCart: () => void;
+  updateQuantity: (itemId: string, quantity: number) => void;
+}
+
+const useCartStore = create<CartStore>()(
+  persist(
+    (set) => ({
+      items: [],
+      addToCart: (item) => set((state) => {
+        const existingItem = state.items.find(i => i.id === item.id);
+        if (existingItem) {
+          return {
+            items: state.items.map(i => 
+              i.id === item.id 
+                ? { ...i, quantity: i.quantity + item.quantity }
+                : i
+            )
+          };
+        }
+        return { items: [...state.items, item] };
+      }),
+      removeFromCart: (itemId) => set((state) => ({
+        items: state.items.filter(item => item.id !== itemId)
+      })),
+      clearCart: () => set({ items: [] }),
+      updateQuantity: (itemId, quantity) => set((state) => ({
+        items: state.items.map(item => 
+          item.id === itemId ? { ...item, quantity } : item
+        )
+      })),
+    }),
+    {
+      name: 'cart-storage', // unique name
+      // Optional: customize storage (localStorage by default)
     }
-    return { cart: [...state.cart, { ...product, quantity: 1 }] };
-  }),
+  )
+);
 
-  removeFromCart: (productId) =>
-    set((state) => ({
-      cart: state.cart.filter((item) => item.id !== productId),
-    })),
-
-  increaseQuantity: (productId) =>
-    set((state) => ({
-      cart: state.cart.map((item) =>
-        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
-      ),
-    })),
-
-  decreaseQuantity: (productId) =>
-    set((state) => ({
-      cart: state.cart.map((item) =>
-        item.id === productId && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      ),
-    })),
-}));
+export default useCartStore;

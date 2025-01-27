@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Proyecto Jamuche
 
-## Getting Started
+## Descripción
+Este proyecto es una página web diseñada para administrar y mostrar información sobre productos, especies y servicios, incluyendo un panel de administración para la gestión de datos. Utiliza **Next.js** como framework principal, junto con **Tailwind CSS** para los estilos y **Prisma** para la gestión de la base de datos.
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Estructura del Proyecto
+```
+└── 📁Jamuche
+    └── 📁public
+    └── 📁src
+        └── 📁app
+        └── 📁components
+        └── 📁context
+        └── 📁store
+    └── .eslintrc.json
+    └── .gitignore
+    └── next.config.js
+    └── package.json
+    └── README.md
+    └── tailwind.config.ts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Carpetas Principales
+- **public/**: Contiene imágenes y archivos estáticos.
+- **src/**: Incluye toda la lógica del proyecto.
+  - **app/**: Maneja las páginas, rutas y funcionalidad principal.
+  - **components/**: Componentes reutilizables para la interfaz de usuario.
+  - **context/**: Maneja los contextos globales del proyecto.
+  - **store/**: Almacena y gestiona estados globales específicos.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Funcionalidades
+1. **Frontend:**
+   - Páginas de productos con detalles.
+   - Sección informativa sobre especies.
+   - Contacto y formulario para pedidos personalizados.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+2. **Backend:**
+   - API para CRUD de productos, usuarios y especies.
+   - Gestión de usuarios con autenticación.
+   - Actualización dinámica del contenido desde el panel administrativo.
 
-## Learn More
+3. **Admin Dashboard:**
+   - Gestión de ventas, usuarios y estadísticas.
+   - Configuración global y control de datos específicos como especies y productos.
 
-To learn more about Next.js, take a look at the following resources:
+## Tecnologías Utilizadas
+- **Next.js**: Framework para React.
+- **Tailwind CSS**: Diseño responsivo y estilos personalizados.
+- **Prisma**: ORM para la base de datos.
+- **TypeScript**: Tipado estático.
+- **Zod**: Validación de datos.
+- **bcryptjs**: Seguridad y hash de contraseñas.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Instalación
+1. Clonar el repositorio:
+   ```bash
+   git clone <URL_DEL_REPOSITORIO>
+   cd Jamuche
+   ```
+2. Instalar dependencias:
+   ```bash
+   npm install
+   ```
+3. Configurar las variables de entorno:
+   Crear un archivo `.env` con los siguientes valores:
+   ```env
+   DATABASE_URL="<URL_DE_LA_BASE_DE_DATOS>"
+   NEXTAUTH_SECRET="<CLAVE_SECRETA>"
+   ```
+4. Ejecutar el proyecto:
+   ```bash
+   npm run dev
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Comandos
+- **`npm run dev`**: Inicia el servidor de desarrollo.
+- **`npm run build`**: Genera una versión optimizada para producción.
+- **`npm run start`**: Inicia el servidor en modo producción.
 
-## Deploy on Vercel
+## Contribuciones
+Si deseas contribuir al proyecto:
+1. Haz un fork del repositorio.
+2. Crea una rama con tu funcionalidad:
+   ```bash
+   git checkout -b feature/nueva-funcionalidad
+   ```
+3. Haz los cambios y realiza un commit:
+   ```bash
+   git commit -m "Descripción de los cambios"
+   ```
+4. Haz push a tu rama:
+   ```bash
+   git push origin feature/nueva-funcionalidad
+   ```
+5. Abre un pull request en GitHub.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Licencia
+Este proyecto está bajo la licencia MIT. Consulta el archivo `LICENSE` para más información.

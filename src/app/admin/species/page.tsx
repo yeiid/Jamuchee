@@ -1,13 +1,13 @@
 // app/admin/species/page.tsx
 'use client'
 import { AdminLayout } from '../AdminLayout';
-// import { AdminSpeciesPanel } from '/AdminSpeciesPanel';
+import { AdminSpeciesPanel } from '../AdminSpeciesPanel';
 import { useState } from 'react';
-import { cart } from '../species';
+import { Cart } from '../../lib/species';
 import { Specie } from '@/app/lib/types';
 
 export default function AdminSpecies() {
-  const [species, setSpecies] = useState<Specie[]>(cart);
+  const [species, setSpecies] = useState<Specie[]>(Cart);
 
   const handleAdd = (newSpecies: Omit<Specie, 'id'>) => {
     const newId = (Math.max(...species.map(s => parseInt(s.id))) + 1).toString();
@@ -32,12 +32,13 @@ export default function AdminSpecies() {
             Gestión de Especies
           </h2>
         </div>
-        <AdminSpeciesPanel
+
+      <AdminSpeciesPanel
           species={species}
           onAdd={handleAdd}
           onUpdate={handleUpdate}
           onDelete={handleDelete}
-        />
+        /> 
       </div>
     </AdminLayout>
   );

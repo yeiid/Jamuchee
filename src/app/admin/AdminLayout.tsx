@@ -14,7 +14,7 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
             {children}
           </div>
         </main>
-      </div>
+      </div> 
     </div>
   );
 };

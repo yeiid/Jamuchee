@@ -1,26 +1,29 @@
-// app/admin/page.tsx
-'use client'
+'use client';
+
 import { AdminLayout } from './AdminLayout';
 import { DashboardStats } from './DashboardStats';
 import { useState, useEffect } from 'react';
-import { cart } from './species'; // Asegúrate de mover tu array 'cart' a un archivo separado
+import { Cart } from '../lib/species'; // Importación del array desde un archivo separado
 
 export default function AdminDashboard() {
+  // Estado inicial para las estadísticas
   const [stats, setStats] = useState({
     totalSpecies: 0,
     speciesForSale: 0,
-    totalViews: 1234, // Esto podría venir de analytics
-    totalSales: 5678, // Esto podría venir de un sistema de ventas
+    totalViews: 123444, // Ejemplo: Se puede conectar con analytics
+    totalSales: 5678, // Ejemplo: Se puede conectar con ventas
   });
 
   useEffect(() => {
-    // Calcular estadísticas basadas en el cart
-    setStats({
-      ...stats,
-      totalSpecies: cart.length,
-      speciesForSale: cart.filter(species => species.forSale).length,
-    });
-  }, []);
+    // Calcular estadísticas dinámicas basadas en el array 'Cart'
+    if (Cart && Cart.length > 0) {
+      setStats((prevStats) => ({
+        ...prevStats,
+        totalSpecies: Cart.length,
+        speciesForSale: Cart.filter((species) => species.forSale).length,
+      }));
+    }
+  }, []); // Escuchar cambios en el array 'Cart'
 
   return (
     <AdminLayout>
@@ -33,6 +36,7 @@ export default function AdminDashboard() {
             Bienvenido al panel de administración
           </p>
         </div>
+        {/* Componente para mostrar estadísticas */}
         <DashboardStats stats={stats} />
       </div>
     </AdminLayout>

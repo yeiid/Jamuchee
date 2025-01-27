@@ -82,7 +82,7 @@ const CustomOrderPage: NextPage = () => {
       "\n"
     )}\nTotal: $${calculateTotal()}`;
 
-    const phoneNumber = "3160457939";
+    const phoneNumber = "3058079573";
     const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
       message
     )}`;

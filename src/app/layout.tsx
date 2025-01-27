@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Sidevar from "@/components/sidenav";
+import Sidevar from "@/components/navigation/sidenav";
 import { CartProvider } from "@/context/Contex";
-import ScrollToTopButton from "@/components/Scroll";
+import ScrollToTopButton from "@/components/common/Scroll";
 import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });

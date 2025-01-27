@@ -3,14 +3,14 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
-import Card from "./Card";
+import Card from "../common/Card";
 
 const links = [
   { name: "INICIO", href: "/", icon: "" },
-  { name: "PRODUCTOS", href: "/ui/products/", icon: "v" },
-  { name: "NOSOTROS", href: "/ui/about", icon: "v" },
-  { name: "ESPECIES", href: "/ui/specie", icon: "v" },
-  { name: "CONTACTO", href: "/ui/contact", icon: "v" },
+  { name: "PRODUCTOS", href: "/features/products/", icon: "v" },
+  { name: "NOSOTROS", href: "/features/about", icon: "v" },
+  { name: "ESPECIES", href: "/features/specie", icon: "v" },
+  { name: "CONTACTO", href: "/features/contact", icon: "v" },
 ];
 
 export default function Header() {

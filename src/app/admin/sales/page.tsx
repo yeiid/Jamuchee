@@ -1,10 +1,10 @@
 // app/admin/sales/page.tsx
 'use client'
 import { AdminLayout } from '../AdminLayout';
-import { cart } from '../species';
+import { Cart } from '../../lib/species';
 
 export default function AdminSales() {
-  const forSaleSpecies = cart.filter(species => species.forSale);
+  const forSaleSpecies = Cart.filter(species => species.forSale);
   
   return (
     <AdminLayout>

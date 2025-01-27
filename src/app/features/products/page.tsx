@@ -1,4 +1,4 @@
-import Productcard from "@/components/ProductCard";
+import Productcard from "@/components/product/ProductCard";
 
 const Product: React.FC = () => {
   return (

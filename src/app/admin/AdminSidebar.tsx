@@ -13,7 +13,7 @@ type NavigationItem = {
 export const AdminSidebar: React.FC = () => {
   const pathname = usePathname();
 
-  const navigation: NavigationItem[] = [
+  const navigation: NavigationItem[] = [ 
     { name: 'Dashboard', href: '/admin', icon: Home, current: pathname === '/admin' },
     { name: 'Especies', href: '/admin/species', icon: Plane, current: pathname === '/admin/species' },
     { name: 'Ventas', href: '/admin/sales', icon: DollarSign, current: pathname === '/admin/sales' },
