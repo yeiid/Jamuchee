@@ -19,9 +19,8 @@ export default function Header() {
     setIsMenuOpen(!isMenuOpen);
   };
 
-
   return (
-    <header className="bg-gray-50 shadow-md ">
+    <header className="bg-white dark:bg-gray-900 shadow-md">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4">
           <Link href="/" className="flex items-center">
@@ -40,7 +39,7 @@ export default function Header() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-gray-600 hover:text-blue-600 transition duration-300"
+                className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition duration-300"
               >
                 {link.name}
               </Link>
@@ -51,7 +50,8 @@ export default function Header() {
             <Card />
             <button
               onClick={handleToggleMenu}
-              className="p-2 ml-4 text-gray-600 hover:text-blue-600 transition duration-300 md:hidden"
+              className="p-2 ml-4 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition duration-300 md:hidden"
+              aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -61,15 +61,18 @@ export default function Header() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <nav className="md:hidden py-4">
-            {links.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="block py-2 text-gray-600 hover:text-blue-600 transition duration-300"
-              >
-                {link.name}
-              </Link>
-            ))}
+            <div className="flex flex-col space-y-4">
+              {links.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition duration-300"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
           </nav>
         )}
       </div>

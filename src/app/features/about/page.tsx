@@ -4,14 +4,14 @@ import Image from "next/image";
 
 const About: NextPage = () => {
   const galleryImages = [
-    { src: "/matera.jpg", alt: "Servicio 1" },
-    { src: "/matera.jpg", alt: "Servicio 2" },
-    { src: "/servicio3.jpg", alt: "Servicio 3" },
-    { src: "/servicio4.jpg", alt: "Servicio 4" },
+    { src: "/materas.jpeg", alt: "Materas" },
+    { src: "/suculenta.jpeg", alt: "Suculentas" },
+    { src: "/cactus1.jpg", alt: "Cactus" },
+    { src: "/oliitaM.jpg", alt: "Ollitas" },
   ];
 
   return (
-    <div className="min-h-screen bg-green-50">
+    <div className="min-h-screen bg-green-50 dark:bg-gray-900">
       <Head>
         <title>Sobre Jamuche - Conectando con la naturaleza</title>
         <meta
@@ -21,23 +21,23 @@ const About: NextPage = () => {
       </Head>
 
       <main className="container mx-auto px-4 py-8">
-        <div className="flex justify-center	">
+        <div className="flex justify-center">
           <Image
             src="/logo.jpeg"
-            alt="Fundador de Jamuche"
+            alt="Logo Jamuche"
             width={200}
             height={200}
-            className="object-cover"
+            className="rounded-lg object-cover"
           />
         </div>
-        <h1 className="text-4xl font-bold text-green-800 mb-8 text-center">
+        <h1 className="text-4xl font-bold text-green-800 dark:text-green-400 mb-8 text-center">
           Sobre Jamuche
         </h1>
-        <section className="mb-12 bg-white shadow-lg rounded-lg p-6">
-          <h2 className="text-2xl font-semibold text-green-700 mb-4">
+        <section className="mb-12 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
+          <h2 className="text-2xl font-semibold text-green-700 dark:text-green-400 mb-4">
             Nuestra Misión
           </h2>
-          <p className="text-lg text-gray-700">
+          <p className="text-lg text-gray-700 dark:text-gray-300">
             En Jamuche, nuestra misión es conectar a las personas con la
             naturaleza a través de plantas que transmiten buenas vibras. Creemos
             que cada planta tiene el poder de transformar espacios y elevar el
@@ -46,11 +46,11 @@ const About: NextPage = () => {
           </p>
         </section>
 
-        <section className="mb-12 bg-white shadow-lg rounded-lg p-6">
-          <h2 className="text-2xl font-semibold text-green-700 mb-4">
+        <section className="mb-12 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
+          <h2 className="text-2xl font-semibold text-green-700 dark:text-green-400 mb-4">
             Nuestros Valores
           </h2>
-          <ul className="list-disc list-inside text-lg text-gray-700 space-y-2">
+          <ul className="list-disc list-inside text-lg text-gray-700 dark:text-gray-300 space-y-2">
             <li>Conexión con la naturaleza</li>
             <li>Bienestar y energía positiva</li>
             <li>Sostenibilidad y respeto por el medio ambiente</li>
@@ -58,8 +58,8 @@ const About: NextPage = () => {
           </ul>
         </section>
 
-        <section className="mb-12 bg-white shadow-lg rounded-lg p-6">
-          <h2 className="text-2xl font-semibold text-green-700 mb-4">
+        <section className="mb-12 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
+          <h2 className="text-2xl font-semibold text-green-700 dark:text-green-400 mb-4">
             Nuestro Equipo
           </h2>
           <div className="flex flex-col items-center">
@@ -72,10 +72,10 @@ const About: NextPage = () => {
                 className="object-cover"
               />
             </div>
-            <h3 className="text-xl font-medium text-green-600">
+            <h3 className="text-xl font-medium text-green-600 dark:text-green-400">
               Fundador de Jamuche
             </h3>
-            <p className="text-lg text-gray-700 text-center mt-2">
+            <p className="text-lg text-gray-700 dark:text-gray-300 text-center mt-2">
               Como único integrante y fundador de Jamuche, mi pasión es
               compartir la energía positiva de las plantas con el mundo. Creo
               firmemente en el poder de la naturaleza para transformar nuestras
@@ -84,8 +84,8 @@ const About: NextPage = () => {
           </div>
         </section>
 
-        <section className="mb-12 bg-white shadow-lg rounded-lg p-6">
-          <h2 className="text-2xl font-semibold text-green-700 mb-4">
+        <section className="mb-12 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
+          <h2 className="text-2xl font-semibold text-green-700 dark:text-green-400 mb-4">
             Nuestros Servicios
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
@@ -97,20 +97,19 @@ const About: NextPage = () => {
                 <Image
                   src={image.src}
                   alt={image.alt}
-                  layout="fill"
-                  objectFit="cover"
-                  className="transition-transform duration-300 hover:scale-110"
+                  fill
+                  className="object-cover transition-transform duration-300 hover:scale-110"
                 />
               </div>
             ))}
           </div>
         </section>
 
-        <section className="bg-white shadow-lg rounded-lg p-6">
-          <h2 className="text-2xl font-semibold text-green-700 mb-4">
+        <section className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
+          <h2 className="text-2xl font-semibold text-green-700 dark:text-green-400 mb-4">
             Conecta con Nosotros
           </h2>
-          <p className="text-lg text-gray-700">
+          <p className="text-lg text-gray-700 dark:text-gray-300">
             ¿Sientes la buena vibra? Únete a nuestra comunidad de amantes de las
             plantas y descubre cómo la naturaleza puede transformar tu vida.
             Síguenos en nuestras redes sociales y no dudes en contactarnos para

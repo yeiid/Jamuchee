@@ -1,28 +1,61 @@
 import React from "react";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { CartItemProps } from "@/app/lib/types";
+import Image from "next/image";
 
-const CartItem: React.FC<CartItemProps> = ({ product, handleAddToCart, handleDecreaseQuantity, handleRemoveFromCart }) => (
-  <div className="flex items-center border-b py-4">
-    <div className="w-20 h-20 rounded-lg overflow-hidden mr-4 bg-gray-100">
-      {/* <Image src={product.image} alt={product.name} width={80} height={80} className="object-cover" /> */}
-    </div>
-    <div className="flex-grow">
-      <p className="font-semibold">{product.name}</p>
-      <p className="text-sm text-gray-500">${product.price.toFixed(2)} x {product.quantity}</p>
-      <div className="flex items-center mt-2">
-        <button className="p-1 rounded-full bg-green-100 text-green-600 hover:bg-green-200 transition" onClick={() => handleDecreaseQuantity(product.id)}>
-          <Minus size={16} />
-        </button>
-        <span className="mx-2 font-semibold">{product.quantity}</span>
-        <button className="p-1 rounded-full bg-green-100 text-green-600 hover:bg-green-200 transition" onClick={() => handleAddToCart(product.id)}>
-          <Plus size={16} />
-        </button>
+const CartItem: React.FC<CartItemProps> = ({
+  product,
+  handleAddToCart,
+  handleDecreaseQuantity,
+  handleRemoveFromCart,
+}) => (
+  <div className="flex items-center justify-between py-4 border-b border-gray-200 dark:border-gray-700">
+    <div className="flex items-center space-x-4">
+      <div className="relative w-16 h-16">
+        <Image
+          src={product.image}
+          alt={product.name}
+          fill
+          className="object-cover rounded-lg"
+        />
+      </div>
+      <div>
+        <h3 className="text-sm font-medium text-gray-900 dark:text-white">
+          {product.name}
+        </h3>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          ${product.price.toFixed(2)}
+        </p>
       </div>
     </div>
-    <button className="p-2 rounded-full bg-red-100 text-red-600 hover:bg-red-200 transition ml-2" onClick={() => handleRemoveFromCart(product.id)} aria-label="Eliminar del carrito">
-      <Trash2 size={20} />
-    </button>
+    <div className="flex items-center space-x-4">
+      <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-lg">
+        <button
+          onClick={() => handleDecreaseQuantity(product.id)}
+          className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-l-lg transition-colors duration-200"
+          aria-label="Disminuir cantidad"
+        >
+          <Minus className="w-4 h-4 text-gray-600 dark:text-gray-300" />
+        </button>
+        <span className="px-3 py-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+          {product.quantity}
+        </span>
+        <button
+          onClick={() => handleAddToCart(product.id)}
+          className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-r-lg transition-colors duration-200"
+          aria-label="Aumentar cantidad"
+        >
+          <Plus className="w-4 h-4 text-gray-600 dark:text-gray-300" />
+        </button>
+      </div>
+      <button
+        onClick={() => handleRemoveFromCart(product.id)}
+        className="p-2 text-gray-400 hover:text-red-500 dark:text-gray-500 dark:hover:text-red-400 transition-colors duration-200"
+        aria-label="Eliminar producto"
+      >
+        <Trash2 className="w-4 h-4" />
+      </button>
+    </div>
   </div>
 );
 

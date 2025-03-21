@@ -1,35 +1,44 @@
 import Image from "next/image";
+
 const imageRoutes = [
   {
     category: "Cactus",
-    imagePath: "/cactus1.jpg"
+    imagePath: "/cactus1.jpg",
   },
   {
     category: "Suculentas",
-    imagePath: "/suculenta.jpeg"
+    imagePath: "/suculenta.jpeg",
   },
   {
-    category: "Materas", 
-    imagePath: "/matera.jpeg"
-  }
+    category: "Materas",
+    imagePath: "/materas.jpeg",
+  },
 ];
+
 const CategorySection = () => {
   return (
-    <section className="py-16">
+    <section className="py-16 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12">Nuestras Categorías</h2>
+        <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">
+          Nuestras Categorías
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {imageRoutes.map((item, index) => (
-            <div key={index} className="relative group overflow-hidden rounded-lg shadow-lg">
+            <div
+              key={index}
+              className="relative group overflow-hidden rounded-lg shadow-lg dark:shadow-gray-800"
+            >
               <Image
-                src={item.imagePath} // Usar la ruta del archivo importado
+                src={item.imagePath}
                 alt={item.category}
                 width={400}
                 height={300}
                 className="w-full h-64 object-cover transition duration-300 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                <h3 className="text-white text-2xl font-bold">{item.category}</h3>
+                <h3 className="text-white text-2xl font-bold">
+                  {item.category}
+                </h3>
               </div>
             </div>
           ))}

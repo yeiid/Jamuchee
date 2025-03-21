@@ -2,11 +2,180 @@
 @tailwind components;
 @tailwind utilities;
 
-
-body{
-    background-color: rgb(184, 169, 169);
-    /* background-color: black; */
-    
-
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 245, 245, 245;
+  --background-end-rgb: 255, 255, 255;
 }
 
+.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 30, 30, 30;
+  --background-end-rgb: 0, 0, 0;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
+  min-height: 100vh;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold text-gray-900 dark:text-white;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  p {
+    @apply text-gray-600 dark:text-gray-300 leading-relaxed;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 
+           transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2
+           dark:focus:ring-offset-gray-900;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-secondary-600 text-white rounded-lg hover:bg-secondary-700 
+           transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 
+           focus:outline-none focus:ring-2 focus:ring-secondary-500 focus:ring-offset-2
+           dark:focus:ring-offset-gray-900;
+  }
+
+  .btn-outline {
+    @apply px-6 py-3 border-2 border-primary-600 text-primary-600 rounded-lg 
+           hover:bg-primary-50 transition-all duration-300 
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2
+           dark:text-primary-400 dark:border-primary-400 dark:hover:bg-primary-900/20
+           dark:focus:ring-offset-gray-900;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2 border border-gray-300 rounded-lg 
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 
+           transition-all duration-300
+           dark:bg-gray-800 dark:border-gray-700 dark:text-white
+           dark:focus:ring-offset-gray-900;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-lg p-6 hover:shadow-xl 
+           transition-all duration-300
+           dark:bg-gray-800 dark:shadow-gray-900/30;
+  }
+
+  .section {
+    @apply py-16 px-4 sm:px-6 lg:px-8;
+  }
+
+  .container {
+    @apply max-w-7xl mx-auto;
+  }
+}
+
+/* Animaciones personalizadas */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Estilos para scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary-400 rounded-full hover:bg-primary-500 transition-colors
+         dark:bg-primary-600 dark:hover:bg-primary-500;
+}
+
+/* Estilos para selección de texto */
+::selection {
+  @apply bg-primary-200 text-primary-900 dark:bg-primary-800 dark:text-primary-100;
+}
+
+/* Estilos para enlaces */
+a {
+  @apply text-primary-600 hover:text-primary-700 transition-colors duration-300
+         dark:text-primary-400 dark:hover:text-primary-300;
+}
+
+/* Estilos para listas */
+ul,
+ol {
+  @apply space-y-2;
+}
+
+li {
+  @apply text-gray-600 dark:text-gray-300;
+}
+
+/* Estilos para tablas */
+table {
+  @apply w-full border-collapse;
+}
+
+th {
+  @apply bg-gray-50 text-left px-4 py-2 text-sm font-medium text-gray-500
+         dark:bg-gray-800 dark:text-gray-400;
+}
+
+td {
+  @apply border-t border-gray-200 px-4 py-2 text-sm text-gray-600
+         dark:border-gray-700 dark:text-gray-300;
+}
+
+/* Estilos para formularios */
+label {
+  @apply block text-sm font-medium text-gray-700 mb-1
+         dark:text-gray-300;
+}
+
+/* Estilos para mensajes de error */
+.error-message {
+  @apply text-red-600 text-sm mt-1 dark:text-red-400;
+}
+
+/* Estilos para mensajes de éxito */
+.success-message {
+  @apply text-green-600 text-sm mt-1 dark:text-green-400;
+}

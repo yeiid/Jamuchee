@@ -1,11 +1,32 @@
+"use client";
 // /admin/AdminHeader.tsx
-import { BellIcon, UserCircle } from 'lucide-react';
+import { useState } from "react";
+import { BellIcon, UserCircle, LogOut, Settings, User } from "lucide-react";
+import { useRouter } from "next/navigation";
+import useAuthStore from "@/store/useAuthStore";
 
 interface AdminHeaderProps {
   username?: string; // El nombre del usuario puede ser dinámico
 }
 
-export const AdminHeader: React.FC<AdminHeaderProps> = ({ username = 'Admin' }) => {
+export const AdminHeader: React.FC<AdminHeaderProps> = ({
+  username = "Admin",
+}) => {
+  const router = useRouter();
+  const { logout, username: storeUsername } = useAuthStore();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const displayName = storeUsername || username;
+
+  const handleLogout = () => {
+    logout();
+    router.push("/admin/login");
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <header className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
       <div className="flex flex-1 justify-between px-4 sm:px-6 lg:px-8">
@@ -33,11 +54,47 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({ username = 'Admin' }) 
             <button
               className="flex items-center space-x-2 p-1 rounded-full hover:bg-gray-100"
               aria-label="Menú de usuario"
+              onClick={toggleMenu}
             >
               <UserCircle className="h-8 w-8 text-gray-400" />
-              <span className="text-sm font-medium text-gray-700">{username}</span>
+              <span className="text-sm font-medium text-gray-700">
+                {displayName}
+              </span>
             </button>
-            {/* Aquí puedes agregar un menú desplegable */}
+            {/* Menú desplegable */}
+            {isMenuOpen && (
+              <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-20">
+                <div
+                  className="py-1"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="user-menu"
+                >
+                  <button
+                    className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    role="menuitem"
+                  >
+                    <User className="mr-2 h-4 w-4" />
+                    Mi perfil
+                  </button>
+                  <button
+                    className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    role="menuitem"
+                  >
+                    <Settings className="mr-2 h-4 w-4" />
+                    Configuración
+                  </button>
+                  <button
+                    className="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+                    role="menuitem"
+                    onClick={handleLogout}
+                  >
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Cerrar sesión
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

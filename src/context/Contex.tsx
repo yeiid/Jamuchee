@@ -1,49 +1,37 @@
 "use client";
 
-import { createContext, useReducer, useContext } from "react";
-import {Product,CartState,Action} from "@/app/lib/types"
+import { createContext, useContext, ReactNode } from "react";
+import useCartStore, { CartItem } from "@/store/useCartStore";
 
+interface CartContextProps {
+  cart: CartItem[];
+  addToCart: (item: CartItem) => void;
+  removeFromCart: (itemId: string) => void;
+  clearCart: () => void;
+  updateQuantity: (itemId: string, quantity: number) => void;
+  getTotalItems: () => number;
+  getTotalPrice: () => number;
+  isInCart: (itemId: string) => boolean;
+}
 
-const CartContext = createContext<{ cart: Product[]; dispatch: React.Dispatch<Action> } | undefined>(undefined);
+const CartContext = createContext<CartContextProps | undefined>(undefined);
 
-const cartReducer = (state: CartState, action: Action) => {
-  switch (action.type) {
-    case 'ADD_TO_CART':
-      const existingProduct = state.cart.find((item: Product) => item.id === action.payload.id);
-
-      if (existingProduct) {
-        // Si el producto ya está en el carrito, incrementa la cantidad
-        return { cart: state.cart.map((item: Product) =>
-          item.id === action.payload.id ? { ...item, quantity: item.quantity + 1 } : item
-        )};
-      } else {
-        // Si el producto no está en el carrito, agrégalo con cantidad 1
-        return { cart: [...state.cart, { ...action.payload, quantity: 1 }] };
-      }
-    case "REMOVE_FROM_CART":
-      return { cart: state.cart.filter((item: Product) => item.id !== action.payload) };
-    case "INCREASE_QUANTITY":
-      return { cart: state.cart.map((item: Product) =>
-        item.id === action.payload
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      )};
-    case "DECREASE_QUANTITY":
-      return { cart: state.cart.map((item: Product) =>
-        item.id === action.payload && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )};
-    default:
-      return state;
-  }
-};
-
-const CartProvider = ({ children }: { children: React.ReactNode }) => {
-  const [cart, dispatch] = useReducer(cartReducer, { cart: [] });
+const CartProvider = ({ children }: { children: ReactNode }) => {
+  const cartStore = useCartStore();
 
   return (
-    <CartContext.Provider value={{ cart: cart.cart, dispatch }}>
+    <CartContext.Provider
+      value={{
+        cart: cartStore.items,
+        addToCart: cartStore.addToCart,
+        removeFromCart: cartStore.removeFromCart,
+        clearCart: cartStore.clearCart,
+        updateQuantity: cartStore.updateQuantity,
+        getTotalItems: cartStore.getTotalItems,
+        getTotalPrice: cartStore.getTotalPrice,
+        isInCart: cartStore.isInCart,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
