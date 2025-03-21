@@ -1,13 +1,27 @@
-onst [phone, setPhone] = useState("");
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import useCartStore from "@/store/useCartStore";
+
+export default function CustomOrderPage() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [description, setDescription] = useState("");
   const [budget, setBudget] = useState("");
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [isMounted, setIsMounted] = useState(false);
   const addToCart = useCartStore((state) => state.addToCart);
-etIsMounted(true);
+  const router = useRouter();
+
+  useEffect(() => {
+    setIsMounted(true);
   }, []);
-mageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       setImage(file);
@@ -212,6 +226,4 @@ mageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       </div>
     </div>
   );
-};
-
-export default CustomOrderPage;
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const Card = ({ title, subtitle, imageUrl, children }) => {
   return (
@@ -10,7 +11,13 @@ const Card = ({ title, subtitle, imageUrl, children }) => {
 
       {imageUrl && (
         <div className="card-image">
-          <img src={imageUrl} alt={title} />
+          <Image 
+            src={imageUrl} 
+            alt={title} 
+            width={500} 
+            height={300} 
+            style={{ objectFit: "cover" }}
+          />
         </div>
       )}
 

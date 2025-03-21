@@ -13,7 +13,7 @@ const CartItem: React.FC<CartItemProps> = ({
     <div className="flex items-center space-x-4">
       <div className="relative w-16 h-16">
         <Image
-          src={product.image}
+          src={product.image ?? "/placeholder.jpg"}
           alt={product.name}
           fill
           className="object-cover rounded-lg"

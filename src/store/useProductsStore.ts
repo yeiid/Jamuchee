@@ -33,6 +33,11 @@ interface ProductsActions {
   getProductById: (id: string) => Product | undefined;
   getProductsByCategory: (category: string) => Product[];
   filterProducts: () => void;
+  filterProductsInternal: (
+    products: Product[],
+    category?: string | null,
+    query?: string
+  ) => Product[];
 }
 
 type ProductsStore = ProductsState & ProductsActions;
@@ -56,11 +61,11 @@ const useProductsStore = create<ProductsStore>()((set, get) => ({
       const data = await response.json();
 
       // Extract unique categories
-      const categories = [
-        ...new Set(
+      const categories = Array.from(
+        new Set(
           data.map((product: Product) => product.category).filter(Boolean)
-        ),
-      ];
+        )
+      ) as string[];
 
       set({
         products: data,
@@ -82,9 +87,9 @@ const useProductsStore = create<ProductsStore>()((set, get) => ({
       return {
         products: newProducts,
         filteredProducts: get().filterProductsInternal(newProducts),
-        categories: [
-          ...new Set(newProducts.map((p) => p.category).filter(Boolean)),
-        ],
+        categories: Array.from(
+          new Set(newProducts.map((p) => p.category).filter(Boolean))
+        ) as string[],
       };
     }),
 
@@ -96,9 +101,9 @@ const useProductsStore = create<ProductsStore>()((set, get) => ({
       return {
         products: newProducts,
         filteredProducts: get().filterProductsInternal(newProducts),
-        categories: [
-          ...new Set(newProducts.map((p) => p.category).filter(Boolean)),
-        ],
+        categories: Array.from(
+          new Set(newProducts.map((p) => p.category).filter(Boolean))
+        ) as string[],
       };
     }),
 
@@ -110,9 +115,9 @@ const useProductsStore = create<ProductsStore>()((set, get) => ({
       return {
         products: newProducts,
         filteredProducts: get().filterProductsInternal(newProducts),
-        categories: [
-          ...new Set(newProducts.map((p) => p.category).filter(Boolean)),
-        ],
+        categories: Array.from(
+          new Set(newProducts.map((p) => p.category).filter(Boolean))
+        ) as string[],
       };
     }),
 

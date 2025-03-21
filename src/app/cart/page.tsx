@@ -9,7 +9,7 @@ import { ArrowLeft, Trash2, ShoppingBag } from "lucide-react";
 
 export default function CartPage() {
   const router = useRouter();
-  const { items, removeItem, updateQuantity } = useCartStore();
+  const { items, removeFromCart, updateQuantity } = useCartStore();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -144,7 +144,7 @@ export default function CartPage() {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <button
-                          onClick={() => removeItem(item.id)}
+                          onClick={() => removeFromCart(item.id)}
                           className="text-red-500 hover:text-red-700"
                         >
                           <Trash2 className="h-5 w-5" />

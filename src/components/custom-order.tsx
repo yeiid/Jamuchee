@@ -335,7 +335,7 @@ const CustomOrderPage: NextPage = () => {
             </span>
           </div>
           <p className="text-gray-600 mb-4">
-            Al hacer clic en "Finalizar pedido", serás redirigido a WhatsApp
+            Al hacer clic en &quot;Finalizar pedido&quot;, serás redirigido a WhatsApp
             para completar tu compra.
           </p>
           <button
